@@ -1,4 +1,4 @@
-package com.ahmedhassan.technicalassessment.postdetails.presentation.view.fragment;
+package com.ahmedhassan.technicalassessment.posts.presentation.view.fragment;
 
 import android.os.Bundle;
 
