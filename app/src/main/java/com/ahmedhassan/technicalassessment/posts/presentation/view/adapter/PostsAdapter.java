@@ -1,5 +1,6 @@
 package com.ahmedhassan.technicalassessment.posts.presentation.view.adapter;
 
+import android.content.Intent;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedhassan.technicalassessment.R;
+import com.ahmedhassan.technicalassessment.postdetails.presentation.view.activity.PostDetailsActivity;
 import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
@@ -81,6 +83,10 @@ public class PostsAdapter extends RecyclerSwipeAdapter<PostsAdapter.PostViewHold
             ((ImageView) view.findViewById(R.id.ivDeletepost)).setOnClickListener(v -> {
                 deletePostLiveData.setValue(Pair.create(postModel, position));
             });
+
+            view.findViewById(R.id.clMainItemLayout).setOnClickListener(v ->
+                    view.getContext().startActivity(
+                            new Intent(view.getContext(), PostDetailsActivity.class)));
         }
     }
 }
