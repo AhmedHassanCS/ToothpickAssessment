@@ -1,5 +1,6 @@
 package com.ahmedhassan.technicalassessment.postdetails.presentation.viewmodel;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -21,6 +22,14 @@ public class PostDetailsViewModel extends ViewModel {
 
     public PostDetailsViewModel(GetPostDetailsUseCase getPostDetailsUseCase){
         this.getPostDetailsUseCase = getPostDetailsUseCase;
+    }
+
+    public LiveData<PostDetailsModel> getPostDetailsLiveData() {
+        return postDetailsLiveData;
+    }
+
+    public LiveData<ApplicationException> getPostDetailsErrorLiveData() {
+        return postDetailsErrorLiveData;
     }
 
     public void getPostDetails(int id){

@@ -2,19 +2,19 @@ package com.ahmedhassan.technicalassessment.posts.domain.model;
 
 public class PostModel {
     private int userId;
-    private int it;
+    private int id;
     private String title;
     private String body;
 
-    public PostModel(int userId, int it, String title, String body) {
+    public PostModel(int userId, int id, String title, String body) {
         this.userId = userId;
-        this.it = it;
+        this.id = id;
         this.title = title;
         this.body = body;
     }
 
-    public int getIt() {
-        return it;
+    public int getId() {
+        return id;
     }
 
     public int getUserId() {

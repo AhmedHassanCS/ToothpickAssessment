@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:leftEdgeSwipeOffset="0dp"
+        app:rightEdgeSwipeOffset="0dp">
+        <LinearLayout
+            android:id="@+id/llBackLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:tag="Bottom3">
+            <ImageView
+                android:id="@+id/ivEditPost"
+                android:layout_width="64dp"
+                android:layout_height="108dp"
+                android:scaleType="centerInside"
+                android:background="@color/colorRoseRed"
+                android:src="@drawable/ic_edit_post" />
+
+            <ImageView
+                android:id="@+id/ivDeletepost"
+                android:layout_width="64dp"
+                android:layout_height="108dp"
+                android:scaleType="centerInside"
+                android:background="@color/colorGreen"
+                android:src="@drawable/ic_clear_delete_post"
+                />
+        </LinearLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp">
+
+            <TextView
+                android:id="@+id/tvPostTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_padding"
+                android:textColor="@android:color/black"
+                tools:text="Covid-19"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/text_sub_title"
+                app:layout_constraintEnd_toStartOf="@+id/ivHandle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvPostContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPostTitle"
+                android:textSize="@dimen/text_content"
+                android:maxLines="1"
+                android:textColor="@color/colorGray40"
+                android:ellipsize="end"
+                android:textAlignment="viewStart"
+                app:layout_constraintEnd_toStartOf="@+id/ivHandle"
+                tools:text="This is a sample text added for the  This is a sample text added for the purposes of testing"
+                android:layout_marginStart="@dimen/activity_horizontal_padding"
+                android:layout_marginEnd="@dimen/activity_horizontal_padding"
+                android:layout_marginTop="6dp"/>
+
+            <ImageView
+                android:id="@+id/ivHandle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_list_handle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <View
+                android:layout_width="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGrayLight"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.daimajia.swipe.SwipeLayout>
+</LinearLayout>

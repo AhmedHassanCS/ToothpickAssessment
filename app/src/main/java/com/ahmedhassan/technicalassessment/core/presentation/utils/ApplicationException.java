@@ -1,5 +1,7 @@
 package com.ahmedhassan.technicalassessment.core.presentation.utils;
 
+import com.ahmedhassan.technicalassessment.R;
+
 import org.apache.http.conn.ConnectTimeoutException;
 
 import java.net.SocketTimeoutException;
@@ -30,6 +32,17 @@ public class ApplicationException{
         return kind;
     }
 
+
+    public int getMessageResource(){
+         switch (kind){
+            case NETWORK:
+                return R.string.network_error;
+            case TIMEOUT:
+                return R.string.timeout_error;
+             default:
+                return R.string.unknown_error;
+        }
+    }
     public enum Kind{
         NETWORK, TIMEOUT, UNKNOWN
     }

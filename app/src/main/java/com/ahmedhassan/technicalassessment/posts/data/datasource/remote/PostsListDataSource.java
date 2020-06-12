@@ -4,6 +4,7 @@ import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.api.Post
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.PostEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -23,7 +24,9 @@ public class PostsListDataSource {
         return postsListService.getPostsList(userId).map(this::map);
     }
 
-    private ArrayList<PostEntity> map(Response<ArrayList<PostEntity>> response){
-        return response.body();
+    private ArrayList<PostEntity> map(Response<List<PostEntity>> response){
+        if(response.body() != null)
+            return new ArrayList<>(response.body());
+        else return new ArrayList<>();
     }
 }
