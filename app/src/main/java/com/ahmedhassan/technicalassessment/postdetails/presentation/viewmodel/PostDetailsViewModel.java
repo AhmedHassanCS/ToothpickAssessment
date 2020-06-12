@@ -8,6 +8,8 @@ import com.ahmedhassan.technicalassessment.core.presentation.utils.ApplicationEx
 import com.ahmedhassan.technicalassessment.postdetails.domain.interactor.GetPostDetailsUseCase;
 import com.ahmedhassan.technicalassessment.postdetails.domain.model.PostDetailsModel;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -19,9 +21,16 @@ public class PostDetailsViewModel extends ViewModel {
 
     private MutableLiveData<PostDetailsModel> postDetailsLiveData;
     private MutableLiveData<ApplicationException> postDetailsErrorLiveData;
+    private MutableLiveData<Boolean> postDetailsLoadingLiveData;
 
+    public boolean isReadMoreApplied = false;
+
+    @Inject
     public PostDetailsViewModel(GetPostDetailsUseCase getPostDetailsUseCase){
         this.getPostDetailsUseCase = getPostDetailsUseCase;
+        postDetailsLiveData = new MutableLiveData<>();
+        postDetailsErrorLiveData = new MutableLiveData<>();
+        postDetailsLoadingLiveData = new MutableLiveData<>();
     }
 
     public LiveData<PostDetailsModel> getPostDetailsLiveData() {
@@ -33,10 +42,15 @@ public class PostDetailsViewModel extends ViewModel {
     }
 
     public void getPostDetails(int id){
+        postDetailsLoadingLiveData.setValue(true);
         getPostDetailsUseCase.execute(id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(postDetailsObserver);
+    }
+
+    public MutableLiveData<Boolean> getPostDetailsLoadingLiveData() {
+        return postDetailsLoadingLiveData;
     }
 
     private Observer<PostDetailsModel> postDetailsObserver = new Observer<PostDetailsModel>(){
@@ -46,11 +60,13 @@ public class PostDetailsViewModel extends ViewModel {
 
         @Override
         public void onNext(PostDetailsModel postDetailsModel) {
+            postDetailsLoadingLiveData.setValue(false);
             postDetailsLiveData.setValue(postDetailsModel);
         }
 
         @Override
         public void onError(Throwable e) {
+            postDetailsLoadingLiveData.setValue(false);
             postDetailsErrorLiveData.setValue(ApplicationException.fromThrowable(e));
         }
 

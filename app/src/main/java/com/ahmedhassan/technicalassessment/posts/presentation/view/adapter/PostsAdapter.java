@@ -85,8 +85,9 @@ public class PostsAdapter extends RecyclerSwipeAdapter<PostsAdapter.PostViewHold
             });
 
             view.findViewById(R.id.clMainItemLayout).setOnClickListener(v ->
-                    view.getContext().startActivity(
-                            new Intent(view.getContext(), PostDetailsActivity.class)));
+                    view.getContext().startActivity(PostDetailsActivity.getCallingIntent(
+                            view.getContext(), postModel.getId()))
+            );
         }
     }
 }

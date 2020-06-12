@@ -38,6 +38,8 @@
         android:layout_marginEnd="@dimen/activity_horizontal_padding"
         android:layout_marginTop="10dp"
         android:hint="@string/new_post_title"
+        android:imeOptions="actionNext"
+        android:nextFocusForward="@id/etPostDesc"
         app:layout_constraintTop_toBottomOf="@id/tvCreatePost"/>
 
     <EditText
@@ -45,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
+        android:imeOptions="actionDone"
         android:layout_marginStart="@dimen/activity_horizontal_padding"
         android:layout_marginEnd="@dimen/activity_horizontal_padding"
         android:layout_marginTop="30dp"

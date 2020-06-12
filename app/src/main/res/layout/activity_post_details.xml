@@ -4,6 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/clMainPostDetailsLayout"
     tools:context=".postdetails.presentation.view.activity.PostDetailsActivity">
 
+    <TextView
+        android:id="@+id/tvTitleHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="@dimen/text_sub_title"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_margin="@dimen/activity_horizontal_padding"
+        android:text="@string/details_title"/>
+
+    <TextView
+        android:id="@+id/tvPostDetailsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleHint"
+        tools:text="Covid-19. A Pandemic"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="@dimen/activity_horizontal_padding"
+        android:layout_marginTop="6dp"/>
+
+    <View
+        android:id="@+id/viewDetailsSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDetailsTitle"/>
+    <TextView
+        android:id="@+id/tvDescHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewDetailsSeparator"
+        android:textSize="@dimen/text_sub_title"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_margin="@dimen/activity_horizontal_padding"
+        android:text="@string/details_desc"/>
+
+    <TextView
+        android:id="@+id/tbPostDetailsDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescHint"
+        tools:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut…"
+        android:textColor="@android:color/black"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:layout_marginStart="@dimen/activity_horizontal_padding"
+        android:layout_marginEnd="@dimen/activity_horizontal_padding"
+        android:layout_marginTop="6dp"/>
+
+    <TextView
+        android:id="@+id/tvDetailsReadMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/details_read_more"
+        android:textColor="@color/colorGreen"
+        android:padding="3dp"
+        android:gravity="center"
+        android:layout_marginEnd="@dimen/activity_horizontal_padding"
+        app:layout_constraintTop_toBottomOf="@id/tbPostDetailsDesc"/>
+
+    <include layout="@layout/layout_progress" />
 </androidx.constraintlayout.widget.ConstraintLayout>
