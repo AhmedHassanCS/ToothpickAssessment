@@ -4,7 +4,7 @@
 Project is built in **Clean Architecture**. It's divided into three layers (Presentation, Domain, Data).
 The project also uses **MVVM design pattern** to handle the front side.
 
-## Android Architecture Components
+## Android lifecycle Components
 Project uses the following Android Architecture Components:
 1. ViewModel
 2. LiveData
