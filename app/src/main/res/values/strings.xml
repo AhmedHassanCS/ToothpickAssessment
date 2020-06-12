@@ -6,4 +6,8 @@
     <string name="network_error">No Internet connection!</string>
     <string name="timeout_error">Connection timed out!</string>
     <string name="unknown_error">Something went wrong please try again later!</string>
+    <string name="posts_list_create_new_post">Create a new post</string>
+    <string name="new_post_enter_desc">Enter Description</string>
+    <string name="new_post_title">Title</string>
+    <string name="new_post_create">Create</string>
 </resources>

@@ -2,6 +2,7 @@ package com.ahmedhassan.technicalassessment.posts.data.repository;
 
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.PostsListDataSource;
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.PostEntity;
+import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.params.CreatePostBody;
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.mapper.PostMapper;
 import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
 import com.ahmedhassan.technicalassessment.posts.domain.repository.PostsListRepository;
@@ -23,10 +24,16 @@ public class PostsListRepositoryImpl implements PostsListRepository {
 
     @Override
     public Observable<ArrayList<PostModel>> getPostsList(int userId) {
-        return postsListDataSource.getPostsList(userId).map(this::map);
+        return postsListDataSource.getPostsList(userId).map(this::mapPosts);
     }
 
-    private ArrayList<PostModel> map(ArrayList<PostEntity> entities){
+    @Override
+    public Observable<PostModel> createPost(int userId, String title, String body) {
+        return postsListDataSource.createPost(new CreatePostBody(userId, title, body))
+                .map(PostMapper::mapPost);
+    }
+
+    private ArrayList<PostModel> mapPosts(ArrayList<PostEntity> entities){
         ArrayList<PostModel> models = new ArrayList<PostModel>();
         for (PostEntity entity: entities) {
             models.add(PostMapper.mapPost(entity));
