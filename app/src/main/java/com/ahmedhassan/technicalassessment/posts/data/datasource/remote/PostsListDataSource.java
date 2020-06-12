@@ -3,6 +3,7 @@ package com.ahmedhassan.technicalassessment.posts.data.datasource.remote;
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.api.PostsListService;
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.PostEntity;
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.params.CreatePostBody;
+import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.params.EditPostParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +27,20 @@ public class PostsListDataSource {
     }
 
     public Observable<PostEntity> createPost(CreatePostBody createPostBody){
-        return postsListService.createPost(createPostBody).map(this::mapCreatePost);
+        return postsListService.createPost(createPostBody).map(this::mapPost);
     }
+
+    public Observable<PostEntity> editPost(EditPostParams editPostParams){
+        return postsListService.editPost(editPostParams, editPostParams.getId()).map(this::mapPost);
+    }
+
     private ArrayList<PostEntity> mapPosts(Response<List<PostEntity>> response){
         if(response.body() != null)
             return new ArrayList<>(response.body());
         else return new ArrayList<>();
     }
 
-    private PostEntity mapCreatePost(Response<PostEntity> response){
+    private PostEntity mapPost(Response<PostEntity> response){
         return response.body();
     }
 

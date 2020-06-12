@@ -24,7 +24,7 @@
                 android:layout_width="64dp"
                 android:layout_height="108dp"
                 android:scaleType="centerInside"
-                android:background="@color/colorRoseRed"
+                android:background="@color/colorGreen"
                 android:src="@drawable/ic_edit_post" />
 
             <ImageView
@@ -32,9 +32,8 @@
                 android:layout_width="64dp"
                 android:layout_height="108dp"
                 android:scaleType="centerInside"
-                android:background="@color/colorGreen"
-                android:src="@drawable/ic_clear_delete_post"
-                />
+                android:background="@color/colorRoseRed"
+                android:src="@drawable/ic_clear_delete_post" />
         </LinearLayout>
 
 

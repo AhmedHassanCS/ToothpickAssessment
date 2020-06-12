@@ -15,7 +15,9 @@ import com.ahmedhassan.technicalassessment.core.presentation.viewmodel.ViewModel
 import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
 import com.ahmedhassan.technicalassessment.posts.presentation.view.adapter.PostsAdapter;
 import com.ahmedhassan.technicalassessment.posts.presentation.view.fragment.CreatePostFragment;
+import com.ahmedhassan.technicalassessment.posts.presentation.view.fragment.EditPostFragment;
 import com.ahmedhassan.technicalassessment.posts.presentation.viewmodel.CreatePostViewModel;
+import com.ahmedhassan.technicalassessment.posts.presentation.viewmodel.EditPostViewModel;
 import com.ahmedhassan.technicalassessment.posts.presentation.viewmodel.PostsViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -53,6 +55,9 @@ public class PostsActivity extends DaggerAppCompatActivity {
     ViewModelFactory<CreatePostViewModel> createViewModelFactory;
     private CreatePostViewModel createPostViewModel;
 
+    @Inject
+    ViewModelFactory<EditPostViewModel> editViewModelFactory;
+    private EditPostViewModel editPostViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,7 @@ public class PostsActivity extends DaggerAppCompatActivity {
     private void initViewModel(){
         postsViewModel = ViewModelProviders.of(this, viewModelFactory).get(PostsViewModel.class);
         createPostViewModel = ViewModelProviders.of(this, createViewModelFactory).get(CreatePostViewModel.class);
+        editPostViewModel = ViewModelProviders.of(this, editViewModelFactory).get(EditPostViewModel.class);
 
         observeData();
         observeError();
@@ -94,6 +100,21 @@ public class PostsActivity extends DaggerAppCompatActivity {
             postsList.add(0, postModel);
             adapter.notifyItemInserted(0);
             rvPosts.scrollToPosition(0);
+        });
+
+        editPostViewModel.getEditedPostLiveData().observe(this, postModel -> {
+            int index = -1;
+            for (int i = 0; i < postsList.size(); i++) {
+                if (postsList.get(i).getId() == postModel.getId()) {
+                    postsList.get(i).setTitle(postModel.getTitle());
+                    postsList.get(i).setBody(postModel.getBody());
+                    index = i;
+                }
+            }
+            if(index != -1){
+                adapter.notifyItemChanged(index);
+                rvPosts.scrollToPosition(index);
+            }
         });
     }
 
@@ -113,6 +134,12 @@ public class PostsActivity extends DaggerAppCompatActivity {
                 rlProgress.setVisibility(View.VISIBLE);
             else rlProgress.setVisibility(View.GONE);
         });
+
+        editPostViewModel.getLoadingLiveData().observe(this, loading -> {
+            if(loading)
+                rlProgress.setVisibility(View.VISIBLE);
+            else rlProgress.setVisibility(View.GONE);
+        });
     }
     private void setupRecyclerView(){
         rvPosts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -127,13 +154,17 @@ public class PostsActivity extends DaggerAppCompatActivity {
         });
 
         adapter.getEditPostLiveData().observe(this, pair ->{
-            //TODO edit post
+            addEditFragment(pair.first);
         });
     }
 
     @OnClick(R.id.fabCreatePost)
     void onCreatePostClick(View view){
         viewShadow.setVisibility(View.VISIBLE);
+        addCreateFragment();
+    }
+
+    private void addCreateFragment(){
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_up_in, R.anim.slide_up_out)
                 .replace(R.id.flCreateFragmentContainer, CreatePostFragment.newInstance())
@@ -141,6 +172,14 @@ public class PostsActivity extends DaggerAppCompatActivity {
                 .commit();
     }
 
+    private void addEditFragment(PostModel postModel){
+        Fragment fragment = EditPostFragment.newInstance(postModel.getId(), postModel.getTitle(), postModel.getBody());
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_up_in, R.anim.slide_up_out)
+                .replace(R.id.flCreateFragmentContainer, fragment)
+                .addToBackStack("create")
+                .commit();
+    }
     @OnClick(R.id.viewShadow)
     void onShadowClicked(){
         onBackPressed();

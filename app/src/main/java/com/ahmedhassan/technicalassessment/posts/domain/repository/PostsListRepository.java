@@ -10,4 +10,6 @@ public interface PostsListRepository {
     Observable<ArrayList<PostModel>> getPostsList(int userId);
 
     Observable<PostModel> createPost(int userId, String title, String body);
+
+    Observable<PostModel> editPost(int userId, int id, String title, String body);
 }

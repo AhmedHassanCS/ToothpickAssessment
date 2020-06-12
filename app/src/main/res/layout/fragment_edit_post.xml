@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_rounded_top_white"
+    tools:context=".posts.presentation.view.fragment.CreatePostFragment">
+
+    <TextView
+        android:id="@+id/tvEditPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/posts_list_create_new_post"
+        android:textColor="@android:color/black"
+        android:layout_margin="@dimen/activity_horizontal_padding"
+        android:textSize="@dimen/text_sub_title"/>
+
+    <ImageView
+        android:id="@+id/ivCloseBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="@dimen/activity_horizontal_padding"
+        android:src="@drawable/ic_close"/>
+
+    <EditText
+        android:id="@+id/etPostTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginStart="@dimen/activity_horizontal_padding"
+        android:layout_marginEnd="@dimen/activity_horizontal_padding"
+        android:layout_marginTop="10dp"
+        android:hint="@string/new_post_title"
+        android:imeOptions="actionNext"
+        android:nextFocusForward="@id/etPostDesc"
+        app:layout_constraintTop_toBottomOf="@id/tvEditPost"/>
+
+    <EditText
+        android:id="@+id/etPostDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:imeOptions="actionDone"
+        android:layout_marginStart="@dimen/activity_horizontal_padding"
+        android:layout_marginEnd="@dimen/activity_horizontal_padding"
+        android:layout_marginTop="30dp"
+        android:hint="@string/new_post_enter_desc"
+        app:layout_constraintTop_toBottomOf="@id/etPostTitle"/>
+
+    <Button
+        android:id="@+id/btnEditPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_rounded_green_bg"
+        app:layout_constraintTop_toBottomOf="@id/etPostDesc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/edit_post_create"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_sub_title"
+        android:layout_marginStart="@dimen/activity_horizontal_padding"
+        android:layout_marginEnd="@dimen/activity_horizontal_padding"
+        android:layout_marginBottom="20dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
