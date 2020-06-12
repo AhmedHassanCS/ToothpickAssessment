@@ -12,4 +12,6 @@ public interface PostsListRepository {
     Observable<PostModel> createPost(int userId, String title, String body);
 
     Observable<PostModel> editPost(int userId, int id, String title, String body);
+
+    Observable<Integer> deletePost(int id);
 }

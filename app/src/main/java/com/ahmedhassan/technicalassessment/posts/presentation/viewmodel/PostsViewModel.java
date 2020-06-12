@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.ahmedhassan.technicalassessment.core.presentation.utils.ApplicationException;
 import com.ahmedhassan.technicalassessment.postdetails.domain.model.PostDetailsModel;
+import com.ahmedhassan.technicalassessment.posts.domain.interactor.DeletePostUseCase;
 import com.ahmedhassan.technicalassessment.posts.domain.interactor.GetPostsListUseCase;
 import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
 
@@ -21,6 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 public class PostsViewModel extends ViewModel {
 
     private GetPostsListUseCase getPostsListUseCase;
+
     private MutableLiveData<ArrayList<PostModel>> postsLiveData;
     private MutableLiveData<ApplicationException> postsErrorLiveData;
 
@@ -35,7 +37,7 @@ public class PostsViewModel extends ViewModel {
         return postsLiveData;
     }
 
-    public MutableLiveData<ApplicationException> getPostsErrorLiveData() {
+    public LiveData<ApplicationException> getPostsErrorLiveData() {
         return postsErrorLiveData;
     }
 

@@ -17,6 +17,7 @@ import com.ahmedhassan.technicalassessment.posts.presentation.view.adapter.Posts
 import com.ahmedhassan.technicalassessment.posts.presentation.view.fragment.CreatePostFragment;
 import com.ahmedhassan.technicalassessment.posts.presentation.view.fragment.EditPostFragment;
 import com.ahmedhassan.technicalassessment.posts.presentation.viewmodel.CreatePostViewModel;
+import com.ahmedhassan.technicalassessment.posts.presentation.viewmodel.DeletePostViewModel;
 import com.ahmedhassan.technicalassessment.posts.presentation.viewmodel.EditPostViewModel;
 import com.ahmedhassan.technicalassessment.posts.presentation.viewmodel.PostsViewModel;
 import com.google.android.material.snackbar.Snackbar;
@@ -59,6 +60,10 @@ public class PostsActivity extends DaggerAppCompatActivity {
     ViewModelFactory<EditPostViewModel> editViewModelFactory;
     private EditPostViewModel editPostViewModel;
 
+    @Inject
+    ViewModelFactory<DeletePostViewModel> deleteViewModelFactory;
+    private DeletePostViewModel deletePostViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Dagger dependency injection
@@ -84,6 +89,7 @@ public class PostsActivity extends DaggerAppCompatActivity {
         postsViewModel = ViewModelProviders.of(this, viewModelFactory).get(PostsViewModel.class);
         createPostViewModel = ViewModelProviders.of(this, createViewModelFactory).get(CreatePostViewModel.class);
         editPostViewModel = ViewModelProviders.of(this, editViewModelFactory).get(EditPostViewModel.class);
+        deletePostViewModel = ViewModelProviders.of(this, deleteViewModelFactory).get(DeletePostViewModel.class);
 
         observeData();
         observeError();
@@ -102,20 +108,9 @@ public class PostsActivity extends DaggerAppCompatActivity {
             rvPosts.scrollToPosition(0);
         });
 
-        editPostViewModel.getEditedPostLiveData().observe(this, postModel -> {
-            int index = -1;
-            for (int i = 0; i < postsList.size(); i++) {
-                if (postsList.get(i).getId() == postModel.getId()) {
-                    postsList.get(i).setTitle(postModel.getTitle());
-                    postsList.get(i).setBody(postModel.getBody());
-                    index = i;
-                }
-            }
-            if(index != -1){
-                adapter.notifyItemChanged(index);
-                rvPosts.scrollToPosition(index);
-            }
-        });
+        editPostViewModel.getEditedPostLiveData().observe(this, this::editPost);
+
+        deletePostViewModel.getPostDeleteLiveData().observe(this, this::deletePost);
     }
 
     private void observeError(){
@@ -128,6 +123,37 @@ public class PostsActivity extends DaggerAppCompatActivity {
         });
     }
 
+    private void editPost(PostModel postModel){
+        int index = -1;
+        for (int i = 0; i < postsList.size(); i++) {
+            if (postsList.get(i).getId() == postModel.getId()) {
+                postsList.get(i).setTitle(postModel.getTitle());
+                postsList.get(i).setBody(postModel.getBody());
+                index = i;
+                break;
+            }
+        }
+        if(index != -1){
+            adapter.notifyItemChanged(index);
+            rvPosts.scrollToPosition(index);
+        }
+    }
+
+    private void deletePost(int id){
+        rlProgress.setVisibility(View.GONE);
+
+        int index = -1;
+        for (int i = 0; i < postsList.size(); i++) {
+            if (postsList.get(i).getId() == id) {
+                postsList.remove(i);
+                index = i;
+                break;
+            }
+        }
+        if(index != -1){
+            adapter.notifyItemRemoved(index);
+        }
+    }
     private void observeProgress(){
         createPostViewModel.getLoadingLiveData().observe(this, loading -> {
             if(loading)
@@ -150,7 +176,8 @@ public class PostsActivity extends DaggerAppCompatActivity {
 
     private void observePostActions(){
         adapter.getDeletePostLiveData().observe(this, pair ->{
-            //TODO delete post
+            rlProgress.setVisibility(View.VISIBLE);
+            deletePostViewModel.deletePost(pair.first.getId());
         });
 
         adapter.getEditPostLiveData().observe(this, pair ->{
@@ -173,6 +200,7 @@ public class PostsActivity extends DaggerAppCompatActivity {
     }
 
     private void addEditFragment(PostModel postModel){
+        viewShadow.setVisibility(View.VISIBLE);
         Fragment fragment = EditPostFragment.newInstance(postModel.getId(), postModel.getTitle(), postModel.getBody());
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_up_in, R.anim.slide_up_out)

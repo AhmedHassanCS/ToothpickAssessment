@@ -9,6 +9,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -25,4 +26,6 @@ public interface PostsListService {
     @PUT("posts/{id}")
     Observable<Response<PostEntity>> editPost(@Body EditPostParams editPostParams, @Path("id") int id);
 
+    @DELETE("posts/{id}")
+    Observable<Response<Void>> deletePost(@Path("id") int id);
 }

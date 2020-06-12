@@ -39,6 +39,12 @@ public class PostsListRepositoryImpl implements PostsListRepository {
         return postsListDataSource.editPost(new EditPostParams(userId, id, title, body))
                 .map(PostMapper::mapPost);
     }
+
+    @Override
+    public Observable<Integer> deletePost(int id) {
+        return postsListDataSource.deletePost(id);
+    }
+
     private ArrayList<PostModel> mapPosts(ArrayList<PostEntity> entities){
         ArrayList<PostModel> models = new ArrayList<PostModel>();
         for (PostEntity entity: entities) {

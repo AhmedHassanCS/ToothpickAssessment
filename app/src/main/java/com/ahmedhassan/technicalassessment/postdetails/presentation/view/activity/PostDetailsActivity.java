@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -38,6 +39,9 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
     @BindView(R.id.tvDetailsReadMore)
     TextView tvDetailsReadMore;
 
+    @BindView(R.id.clMainPostDetailsLayout)
+    ConstraintLayout clMainPostDetailsLayout;
+
     @Inject
     ViewModelFactory<PostDetailsViewModel> viewModelFactory;
     private PostDetailsViewModel postDetailsViewModel;
@@ -50,6 +54,8 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_details);
         ButterKnife.bind(this);
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(R.string.post_details_titles);
         init();
     }
@@ -73,6 +79,7 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
 
     private void observeData(){
         postDetailsViewModel.getPostDetailsLiveData().observe(this, model ->{
+            clMainPostDetailsLayout.setVisibility(View.VISIBLE);
             tvPostDetailsTitle.setText(model.getTitle());
             tbPostDetailsDesc.setText(model.getBody());
         });
@@ -81,7 +88,7 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
     private void observeError(){
         postDetailsViewModel.getPostDetailsErrorLiveData().observe(this, e ->{
             showError(getString(e.getMessageResource()));
-            findViewById(R.id.clMainPostDetailsLayout).setVisibility(View.INVISIBLE);
+            clMainPostDetailsLayout.setVisibility(View.INVISIBLE);
         });
     }
 
@@ -108,9 +115,15 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
 
     private void showError(String error){
         Snackbar snackbar = Snackbar
-                .make(findViewById(R.id.clMainPostDetailsLayout), error, Snackbar.LENGTH_LONG);
+                .make(clMainPostDetailsLayout, error, Snackbar.LENGTH_LONG);
         snackbar.setBackgroundTint(ContextCompat.getColor(this, R.color.colorRoseRed));
         snackbar.show();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onNavigateUp();
     }
 
     public static String ID_PARAM = "id";

@@ -34,6 +34,10 @@ public class PostsListDataSource {
         return postsListService.editPost(editPostParams, editPostParams.getId()).map(this::mapPost);
     }
 
+    public Observable<Integer> deletePost(int id){
+        return postsListService.deletePost(id).map((response) -> id);
+    }
+
     private ArrayList<PostEntity> mapPosts(Response<List<PostEntity>> response){
         if(response.body() != null)
             return new ArrayList<>(response.body());
