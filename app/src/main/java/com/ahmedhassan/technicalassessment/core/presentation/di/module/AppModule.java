@@ -1,4 +1,4 @@
-package com.ahmedhassan.technicalassessment.core.di.module;
+package com.ahmedhassan.technicalassessment.core.presentation.di.module;
 
 import javax.inject.Singleton;
 
