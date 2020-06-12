@@ -1,9 +1,9 @@
 package com.ahmedhassan.technicalassessment.postdetails.domain.repository;
 
-import com.ahmedhassan.technicalassessment.postdetails.data.datasource.remote.entity.PostDetailsEntity;
+import com.ahmedhassan.technicalassessment.postdetails.domain.model.PostDetailsModel;
 
 import io.reactivex.Observable;
 
 public interface PostDetailsRepository {
-    Observable<PostDetailsEntity> getPostDetails(int id);
+    Observable<PostDetailsModel> getPostDetails(int id);
 }
