@@ -6,9 +6,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.ahmedhassan.technicalassessment.core.presentation.utils.ApplicationException;
 import com.ahmedhassan.technicalassessment.posts.domain.interactor.DeletePostUseCase;
-import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -28,10 +25,15 @@ public class DeletePostViewModel extends ViewModel {
     public DeletePostViewModel(DeletePostUseCase deletePostUseCase){
         this.deletePostUseCase = deletePostUseCase;
         postDeleteLiveData = new MutableLiveData<>();
+        postDeleteErrorLiveData = new MutableLiveData<>();
     }
 
     public LiveData<Integer> getPostDeleteLiveData() {
         return postDeleteLiveData;
+    }
+
+    public LiveData<ApplicationException> getPostDeleteErrorLiveData() {
+        return postDeleteErrorLiveData;
     }
 
     public void deletePost(int id){

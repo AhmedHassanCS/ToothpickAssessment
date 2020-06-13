@@ -123,6 +123,10 @@ public class PostsActivity extends DaggerAppCompatActivity {
         createPostViewModel.getCreatePostErrorLiveData().observe(this, t ->{
             showError(getString(t.getMessageResource()));
         });
+
+        deletePostViewModel.getPostDeleteErrorLiveData().observe(this, e -> {
+            showError(getString(e.getMessageResource()));
+        });
     }
 
     private void editPost(PostModel postModel){
