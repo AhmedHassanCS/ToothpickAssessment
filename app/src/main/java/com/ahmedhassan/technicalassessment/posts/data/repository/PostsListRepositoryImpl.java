@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-
+/**
+ * PostsListRepositoryImpl To handle data transactions from different sources and manipulations if exists
+ * */
 public class PostsListRepositoryImpl implements PostsListRepository {
 
     private PostsListDataSource postsListDataSource;

@@ -9,7 +9,10 @@ import java.net.UnknownHostException;
 import java.util.concurrent.TimeoutException;
 
 import retrofit2.HttpException;
-
+/**
+ * Is to handle regular errors
+ * In our app's case it's so simplified, because no server error returned
+ * */
 public class ApplicationException{
 
     private Kind kind;

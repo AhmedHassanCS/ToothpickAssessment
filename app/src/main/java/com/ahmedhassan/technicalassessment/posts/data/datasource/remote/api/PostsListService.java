@@ -16,6 +16,10 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+/**
+ * Service interface is used to be inherited by retrofit auto generated classes
+ * to execute the network request
+ * */
 public interface PostsListService {
     @GET("posts")
     Observable<Response<List<PostEntity>>> getPostsList(@Query("userId") int userId);

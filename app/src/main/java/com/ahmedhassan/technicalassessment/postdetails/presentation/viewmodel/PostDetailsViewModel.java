@@ -14,7 +14,9 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-
+/**
+ * PostDetailsViewModel extends lifecycle ViewModel to be attached to the Activity and aware of its lifecycle
+ * */
 public class PostDetailsViewModel extends ViewModel {
 
     private GetPostDetailsUseCase getPostDetailsUseCase;

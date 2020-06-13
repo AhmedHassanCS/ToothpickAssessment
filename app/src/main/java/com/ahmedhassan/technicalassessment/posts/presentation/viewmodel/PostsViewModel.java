@@ -17,6 +17,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * The main ViewModel for posts screen to fetch posts
+ * */
 public class PostsViewModel extends ViewModel {
 
     private GetPostsListUseCase getPostsListUseCase;

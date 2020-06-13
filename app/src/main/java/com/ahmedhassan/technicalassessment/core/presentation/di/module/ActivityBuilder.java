@@ -9,6 +9,9 @@ import com.ahmedhassan.technicalassessment.posts.presentation.view.activity.Post
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
+/**
+ * ActivityBuilder is a dagger module to specify what modules will be needed for every activity
+ * */
 @Module
 public abstract class ActivityBuilder {
 

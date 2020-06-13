@@ -10,6 +10,9 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
+/**
+ * To handle data transactions from different sources and manipulations if exists
+ * */
 public class PostDetailsRepositoryImpl implements PostDetailsRepository {
 
     private PostDetailsDataSource postDetailsDataSource;

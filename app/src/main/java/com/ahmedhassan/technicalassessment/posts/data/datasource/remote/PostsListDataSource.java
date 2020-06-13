@@ -13,6 +13,9 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import retrofit2.Response;
 
+/**
+ * Remote data source to fetch data from server
+ * */
 public class PostsListDataSource {
 
     private PostsListService postsListService;

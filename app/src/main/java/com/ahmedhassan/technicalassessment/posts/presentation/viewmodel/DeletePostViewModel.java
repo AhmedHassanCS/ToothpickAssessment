@@ -14,6 +14,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * ViewModel create for functionality separation and to be able to reuse it
+ * For demonstrating the architecture
+ * */
 public class DeletePostViewModel extends ViewModel {
 
     private DeletePostUseCase deletePostUseCase;

@@ -2,6 +2,10 @@ package com.ahmedhassan.technicalassessment.core.domain.model;
 
 import java.io.Serializable;
 
+/**
+ * PostModel contain the base minimum data of a post
+ * It's shared between modules that's why it's in the core shared module
+ * */
 public class PostModel implements Serializable {
     private int userId;
     private int id;

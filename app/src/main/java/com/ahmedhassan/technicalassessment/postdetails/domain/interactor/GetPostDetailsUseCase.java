@@ -8,6 +8,9 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
+/**
+ * GetPostDetailsUseCase is to do single task which it fetching post details
+ * */
 public class GetPostDetailsUseCase extends BaseUseCase<Integer, PostDetailsModel> {
 
     private PostDetailsRepository postDetailsRepository;

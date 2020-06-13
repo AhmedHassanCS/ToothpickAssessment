@@ -3,6 +3,9 @@ package com.ahmedhassan.technicalassessment.postdetails.data.datasource.remote.m
 import com.ahmedhassan.technicalassessment.postdetails.data.datasource.remote.entity.PostDetailsEntity;
 import com.ahmedhassan.technicalassessment.postdetails.domain.model.PostDetailsModel;
 
+/**
+ * Mapper to map returned data layer entities to actual usable classes
+ * */
 public class PostDetailsMapper {
 
     public static PostDetailsModel mapPostDetails(PostDetailsEntity entity){

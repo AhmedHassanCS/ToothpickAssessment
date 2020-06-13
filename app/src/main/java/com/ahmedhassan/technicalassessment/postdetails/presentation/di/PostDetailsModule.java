@@ -8,6 +8,10 @@ import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
 
+/**
+ * PostDetailsModule is to provide service for the data-source
+ * and repository implementation for the use-case
+ * */
 @Module
 public class PostDetailsModule {
 

@@ -10,6 +10,10 @@ import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.support.AndroidSupportInjectionModule;
 
+/**
+ *  Dagger AppComponent is to provide modules that will survive for the whole app session
+ *
+ * */
 @Singleton
 @Component(modules = {
         AppModule.class,

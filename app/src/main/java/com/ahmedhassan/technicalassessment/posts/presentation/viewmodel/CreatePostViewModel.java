@@ -15,6 +15,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Shared ViewModel between CreatePostFragment and PostsActivity
+ * Fragment fires the fetching and the activity listens to it
+ * */
 public class CreatePostViewModel extends ViewModel {
 
     private MutableLiveData<PostModel> createdPostLiveData;
