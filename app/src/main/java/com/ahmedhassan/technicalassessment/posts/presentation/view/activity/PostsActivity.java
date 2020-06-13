@@ -124,6 +124,9 @@ public class PostsActivity extends DaggerAppCompatActivity {
             showError(getString(t.getMessageResource()));
         });
 
+        editPostViewModel.getEditPostErrorLiveData().observe(this, t -> {
+            showError(getString(t.getMessageResource()));
+        });
         deletePostViewModel.getPostDeleteErrorLiveData().observe(this, e -> {
             showError(getString(e.getMessageResource()));
         });
