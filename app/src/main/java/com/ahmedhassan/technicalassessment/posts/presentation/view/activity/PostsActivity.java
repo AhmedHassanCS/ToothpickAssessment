@@ -84,6 +84,7 @@ public class PostsActivity extends DaggerAppCompatActivity {
         initViewModel();
         observePostActions();
         postsViewModel.getPosts(1);
+        rlProgress.setVisibility(View.VISIBLE);
     }
     private void initViewModel(){
         postsViewModel = ViewModelProviders.of(this, viewModelFactory).get(PostsViewModel.class);
@@ -98,6 +99,7 @@ public class PostsActivity extends DaggerAppCompatActivity {
 
     private void observeData(){
         postsViewModel.getPostsLiveData().observe(this, data ->{
+            rlProgress.setVisibility(View.GONE);
             postsList.addAll(0, data);
             adapter.notifyItemRangeInserted(0, data.size());
         });
