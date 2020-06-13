@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.ahmedhassan.technicalassessment.R;
 import com.ahmedhassan.technicalassessment.core.presentation.viewmodel.ViewModelFactory;
-import com.ahmedhassan.technicalassessment.postdetails.domain.model.PostDetailsModel;
 import com.ahmedhassan.technicalassessment.postdetails.presentation.viewmodel.PostDetailsViewModel;
+import com.ahmedhassan.technicalassessment.core.domain.model.PostModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
@@ -47,6 +47,7 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
     private PostDetailsViewModel postDetailsViewModel;
 
     private int id;
+    private PostModel postModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
 
     private void getArguments(){
         id = getIntent().getIntExtra(ID_PARAM, 1);
+        postModel = (PostModel) getIntent().getSerializableExtra(POST_PARAM);
     }
 
     private void createViewModel(){
@@ -88,7 +90,9 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
     private void observeError(){
         postDetailsViewModel.getPostDetailsErrorLiveData().observe(this, e ->{
             showError(getString(e.getMessageResource()));
-            clMainPostDetailsLayout.setVisibility(View.INVISIBLE);
+            clMainPostDetailsLayout.setVisibility(View.VISIBLE);
+            tvPostDetailsTitle.setText(postModel.getTitle());
+            tbPostDetailsDesc.setText(postModel.getBody());
         });
     }
 
@@ -127,9 +131,12 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
     }
 
     public static String ID_PARAM = "id";
-    public static Intent getCallingIntent(Context context, int id){
+    public static String POST_PARAM = "post";
+
+    public static Intent getCallingIntent(Context context, int id, PostModel postModel){
         Intent intent = new Intent(context, PostDetailsActivity.class);
         intent.putExtra(ID_PARAM, id);
+        intent.putExtra(POST_PARAM, postModel);
         return intent;
     }
 }

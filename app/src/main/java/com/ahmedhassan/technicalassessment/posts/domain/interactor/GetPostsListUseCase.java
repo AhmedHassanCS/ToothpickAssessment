@@ -1,7 +1,7 @@
 package com.ahmedhassan.technicalassessment.posts.domain.interactor;
 
 import com.ahmedhassan.technicalassessment.core.domain.interactor.BaseUseCase;
-import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
+import com.ahmedhassan.technicalassessment.core.domain.model.PostModel;
 import com.ahmedhassan.technicalassessment.posts.domain.repository.PostsListRepository;
 
 import java.util.ArrayList;

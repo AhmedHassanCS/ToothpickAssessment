@@ -1,6 +1,5 @@
 package com.ahmedhassan.technicalassessment.posts.presentation.view.adapter;
 
-import android.content.Intent;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedhassan.technicalassessment.R;
 import com.ahmedhassan.technicalassessment.postdetails.presentation.view.activity.PostDetailsActivity;
-import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
+import com.ahmedhassan.technicalassessment.core.domain.model.PostModel;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
 import java.util.ArrayList;
@@ -86,7 +85,7 @@ public class PostsAdapter extends RecyclerSwipeAdapter<PostsAdapter.PostViewHold
 
             view.findViewById(R.id.clMainItemLayout).setOnClickListener(v ->
                     view.getContext().startActivity(PostDetailsActivity.getCallingIntent(
-                            view.getContext(), postModel.getId()))
+                            view.getContext(), postModel.getId(), postModel))
             );
         }
     }

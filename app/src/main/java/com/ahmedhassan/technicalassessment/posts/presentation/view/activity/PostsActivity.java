@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedhassan.technicalassessment.R;
 import com.ahmedhassan.technicalassessment.core.presentation.viewmodel.ViewModelFactory;
-import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
+import com.ahmedhassan.technicalassessment.core.domain.model.PostModel;
 import com.ahmedhassan.technicalassessment.posts.presentation.view.adapter.PostsAdapter;
 import com.ahmedhassan.technicalassessment.posts.presentation.view.fragment.CreatePostFragment;
 import com.ahmedhassan.technicalassessment.posts.presentation.view.fragment.EditPostFragment;

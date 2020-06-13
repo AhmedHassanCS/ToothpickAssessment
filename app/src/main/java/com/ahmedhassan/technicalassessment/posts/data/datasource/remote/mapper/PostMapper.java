@@ -1,7 +1,7 @@
 package com.ahmedhassan.technicalassessment.posts.data.datasource.remote.mapper;
 
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.PostEntity;
-import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
+import com.ahmedhassan.technicalassessment.core.domain.model.PostModel;
 
 public class PostMapper {
 

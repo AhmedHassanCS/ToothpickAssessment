@@ -1,6 +1,8 @@
-package com.ahmedhassan.technicalassessment.posts.domain.model;
+package com.ahmedhassan.technicalassessment.core.domain.model;
 
-public class PostModel {
+import java.io.Serializable;
+
+public class PostModel implements Serializable {
     private int userId;
     private int id;
     private String title;

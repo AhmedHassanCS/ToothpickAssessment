@@ -5,7 +5,7 @@ import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.P
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.params.CreatePostBody;
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.entity.params.EditPostParams;
 import com.ahmedhassan.technicalassessment.posts.data.datasource.remote.mapper.PostMapper;
-import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
+import com.ahmedhassan.technicalassessment.core.domain.model.PostModel;
 import com.ahmedhassan.technicalassessment.posts.domain.repository.PostsListRepository;
 
 import java.util.ArrayList;

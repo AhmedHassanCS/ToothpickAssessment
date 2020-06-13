@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.ahmedhassan.technicalassessment.core.presentation.utils.ApplicationException;
 import com.ahmedhassan.technicalassessment.posts.domain.interactor.EditPostUseCase;
-import com.ahmedhassan.technicalassessment.posts.domain.model.PostModel;
+import com.ahmedhassan.technicalassessment.core.domain.model.PostModel;
 
 import javax.inject.Inject;
 
