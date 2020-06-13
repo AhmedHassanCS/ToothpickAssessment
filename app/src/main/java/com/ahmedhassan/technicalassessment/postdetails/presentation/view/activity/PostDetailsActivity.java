@@ -86,6 +86,7 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
     private void observeError(){
         postDetailsViewModel.getPostDetailsErrorLiveData().observe(this, e ->{
             showError(getString(e.getMessageResource()));
+            //In case of error bind existing model instead
             bindData(postModel);
         });
     }

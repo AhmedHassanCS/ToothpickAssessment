@@ -128,6 +128,7 @@ public class PostsActivity extends DaggerAppCompatActivity {
             showError(getString(t.getMessageResource()));
         });
         deletePostViewModel.getPostDeleteErrorLiveData().observe(this, e -> {
+            rlProgress.setVisibility(View.GONE);
             showError(getString(e.getMessageResource()));
         });
     }
