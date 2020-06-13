@@ -80,22 +80,21 @@ public class PostDetailsActivity extends DaggerAppCompatActivity {
     }
 
     private void observeData(){
-        postDetailsViewModel.getPostDetailsLiveData().observe(this, model ->{
-            clMainPostDetailsLayout.setVisibility(View.VISIBLE);
-            tvPostDetailsTitle.setText(model.getTitle());
-            tbPostDetailsDesc.setText(model.getBody());
-        });
+        postDetailsViewModel.getPostDetailsLiveData().observe(this, this::bindData);
     }
 
     private void observeError(){
         postDetailsViewModel.getPostDetailsErrorLiveData().observe(this, e ->{
             showError(getString(e.getMessageResource()));
-            clMainPostDetailsLayout.setVisibility(View.VISIBLE);
-            tvPostDetailsTitle.setText(postModel.getTitle());
-            tbPostDetailsDesc.setText(postModel.getBody());
+            bindData(postModel);
         });
     }
 
+    private void bindData(PostModel postModel){
+        clMainPostDetailsLayout.setVisibility(View.VISIBLE);
+        tvPostDetailsTitle.setText(postModel.getTitle());
+        tbPostDetailsDesc.setText(postModel.getBody());
+    }
     private void observeLoading(){
         postDetailsViewModel.getPostDetailsLoadingLiveData().observe(this, loading ->{
             if(loading)
